@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'kw-p%z9tr8&m$5x559v-^n)f9#yi=&t70r&gp!ytf-$+0z3ves'
+SECRET_KEY = 'kpcj%cscz4a_-v6vfp4f_%wylkcj8s_j&+1gp11em!6r6q3s^r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'django_extensions',
+    'breadboard_app'
 ]
 
 MIDDLEWARE = [
@@ -75,8 +79,11 @@ WSGI_APPLICATION = 'breadboard_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'breadboard',
+        'USER': 'breadboard_user',
+        'PASSWORD': 'breadboard',
+        'HOST': 'localhost'
     }
 }
 
@@ -118,3 +125,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+django_heroku.settings(locals())
