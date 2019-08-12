@@ -12,7 +12,8 @@ class CommentSerializer(serializers.ModelSerializer):
 class ComponentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Component
-        fields = ('id', 'name', 'img_url', 'retailer', 'projects')
+        fields = ('id', 'name', 'img_url', 'retailer',
+                  'description', 'projects')
 
 
 class ProjectSerializer(serializers.ModelSerializer):

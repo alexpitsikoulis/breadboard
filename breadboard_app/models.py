@@ -16,6 +16,7 @@ class Component(models.Model):
     name = models.CharField(max_length=255)
     img_url = models.CharField(max_length=1000)
     retailer = models.CharField(max_length=255)
+    description = models.TextField(default="")
     projects = models.ManyToManyField(
         Project, related_name='components')
 

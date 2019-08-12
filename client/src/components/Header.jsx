@@ -7,7 +7,9 @@ export default class Header extends Component {
 		return (
 			<div>
 				<header>
-					<h1>Breadboard</h1>
+					<h1>
+						<Link to='/'>Breadboard</Link>
+					</h1>
 				</header>
 				<nav>
 					<Flex justifyContent='space-around'>

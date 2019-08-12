@@ -30,6 +30,8 @@ export default class SingleComponent extends Component {
 					/>
 				) : null}
 				<p>Buy some at: {this.state.component.retailer}</p>
+				<h4>Description:</h4>
+				<p>{this.state.component.description}</p>
 			</div>
 		);
 	}
