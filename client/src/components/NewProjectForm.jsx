@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import Select from "react-select";
-import ComponentList from "./ComponentList";
 
 export default class NewProjectForm extends Component {
 	state = {
@@ -27,11 +26,7 @@ export default class NewProjectForm extends Component {
 				return {
 					value: data.name,
 					label: data.name,
-					name: data.name,
-					id: data.id,
-					retailer: data.retailer,
-					img_url: data.img_url,
-					projects: data.projects
+					id: data.id
 				};
 			});
 			this.setState({ components: componentObjects });

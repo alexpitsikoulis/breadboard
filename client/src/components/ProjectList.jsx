@@ -33,6 +33,9 @@ export default class ProjectList extends Component {
 			<div>
 				<h1>All Projects</h1>
 				{projectList}
+				<button>
+					<Link to='/projects/new'>Add New Project</Link>
+				</button>
 			</div>
 		);
 	}
