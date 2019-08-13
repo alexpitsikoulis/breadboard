@@ -7,6 +7,7 @@ import SingleComponent from "./components/SingleComponent";
 import SingleComment from "./components/SingleComment";
 import ComponentList from "./components/ComponentList";
 import Header from "./components/Header";
+import NewProjectForm from "./components/NewProjectForm";
 
 export default class App extends Component {
 	render() {
@@ -24,6 +25,10 @@ export default class App extends Component {
 						<Route
 							path='/comments/:commentId'
 							component={SingleComment}
+						/>
+						<Route
+							path='/projects/new'
+							component={NewProjectForm}
 						/>
 						<Route
 							path='/projects/:projectId'

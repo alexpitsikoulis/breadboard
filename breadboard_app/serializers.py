@@ -18,7 +18,7 @@ class ComponentSerializer(serializers.ModelSerializer):
 
 class ProjectSerializer(serializers.ModelSerializer):
     comments = CommentSerializer(many=True, read_only=True)
-    components = ComponentSerializer(many=True, read_only=True)
+    # components = ComponentSerializer(many=True, read_only=True)
 
     class Meta:
         model = Project

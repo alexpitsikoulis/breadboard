@@ -3,22 +3,21 @@ from django.db import models
 # Create your models here.
 
 
-class Project(models.Model):
-    name = models.CharField(max_length=255)
-    schematic_url = models.CharField(max_length=1000)
-    directions = models.TextField()
-
-    def __str__(self):
-        return self.name
-
-
 class Component(models.Model):
     name = models.CharField(max_length=255)
     img_url = models.CharField(max_length=1000)
     retailer = models.CharField(max_length=255)
     description = models.TextField(default="")
-    projects = models.ManyToManyField(
-        Project, related_name='components')
+
+    def __str__(self):
+            return self.name
+
+
+class Project(models.Model):
+    name = models.CharField(max_length=255)
+    schematic_url = models.CharField(max_length=1000)
+    directions = models.TextField()
+    components = models.ManyToManyField(Component, related_name='projects')
 
     def __str__(self):
         return self.name

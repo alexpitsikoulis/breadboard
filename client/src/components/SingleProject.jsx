@@ -20,6 +20,26 @@ export default class SingleProject extends Component {
 			.get(`/api/v1/projects/${this.props.match.params.projectId}/`)
 			.then(res => {
 				this.setState({ project: res.data });
+			})
+			.then(() => {
+				axios.get(`/api/v1/components/`).then(res => {
+					this.setState(state => {
+						return {
+							project: {
+								id: state.project.id,
+								name: state.project.name,
+								schematic_url: state.project.schematic_url,
+								directions: state.project.directions,
+								comments: state.project.comments,
+								components: res.data.filter(component => {
+									return component.projects.includes(
+										state.project.id
+									);
+								})
+							}
+						};
+					});
+				});
 			});
 	};
 
