@@ -23,7 +23,6 @@ export default class ComponentList extends Component {
 			? this.props.components
 			: this.state.components
 		).map(component => {
-			console.log(component);
 			return (
 				<div key={component.id}>
 					<Link to={`/components/${component.id}`}>
@@ -36,6 +35,11 @@ export default class ComponentList extends Component {
 			<div>
 				{this.props.components ? null : <h2>All Components</h2>}
 				{componentList}
+				{this.props.components ? null : (
+					<button>
+						<Link to='/components/new'>Add New Component</Link>
+					</button>
+				)}
 			</div>
 		);
 	}
