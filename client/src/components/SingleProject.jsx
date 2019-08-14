@@ -74,6 +74,12 @@ export default class SingleProject extends Component {
 			});
 	};
 
+	handleToggleEditForm = () => {
+		this.setState(state => {
+			return { isEditFormDisplayed: !state.isEditFormDisplayed };
+		});
+	};
+
 	handleSelect = selectedOption => {
 		if (
 			this.state.selectedOptions.find(
@@ -234,6 +240,11 @@ export default class SingleProject extends Component {
 						</button>
 					</div>
 				)}
+				<button onClick={this.handleToggleEditForm}>
+					{this.state.isEditFormDisplayed
+						? "Back to Project"
+						: "Edit Project"}
+				</button>
 			</div>
 		);
 	}
