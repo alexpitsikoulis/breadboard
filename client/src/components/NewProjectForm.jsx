@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import Select from "react-select";
 
 export default class NewProjectForm extends Component {
@@ -131,6 +131,9 @@ export default class NewProjectForm extends Component {
 							options={this.state.components}
 							name='components'
 						/>
+						<Link to='/components/new'>
+							Don't see the component listed? Add it here.
+						</Link>
 					</div>
 					<div>
 						<input type='submit' value='Submit' />
