@@ -8,6 +8,7 @@ import SingleComment from "./components/SingleComment";
 import ComponentList from "./components/ComponentList";
 import Header from "./components/Header";
 import NewProjectForm from "./components/NewProjectForm";
+import NewComponentForm from "./components/NewComponentForm";
 
 export default class App extends Component {
 	render() {
@@ -17,6 +18,10 @@ export default class App extends Component {
 					<Route path='/' component={Header} />
 					<Switch>
 						<Route exact path='/' component={ProjectList} />
+						<Route
+							path='/components/new'
+							component={NewComponentForm}
+						/>
 						<Route
 							path='/components/:componentId'
 							component={SingleComponent}

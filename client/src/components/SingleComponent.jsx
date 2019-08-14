@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
 export default class SingleComponent extends Component {
 	state = {
-		component: {}
+		component: {},
+		redirectToComponents: false
 	};
 
 	componentDidMount() {
@@ -19,7 +20,20 @@ export default class SingleComponent extends Component {
 			});
 	};
 
+	handleDelete = () => {
+		axios
+			.delete(
+				`/api/v1/components/${this.props.match.params.componentId}/`
+			)
+			.then(() => {
+				this.setState({ redirectToComponents: true });
+			});
+	};
+
 	render() {
+		if (this.state.redirectToComponents) {
+			return <Redirect to='/components' />;
+		}
 		return (
 			<div>
 				<h2>{this.state.component.name}</h2>
@@ -32,6 +46,7 @@ export default class SingleComponent extends Component {
 				<p>Buy some at: {this.state.component.retailer}</p>
 				<h4>Description:</h4>
 				<p>{this.state.component.description}</p>
+				<button onClick={this.handleDelete}>Delete Component</button>
 			</div>
 		);
 	}

@@ -7,10 +7,10 @@ class Component(models.Model):
     name = models.CharField(max_length=255)
     img_url = models.CharField(max_length=1000)
     retailer = models.CharField(max_length=255)
-    description = models.TextField(default="")
+    description = models.TextField()
 
     def __str__(self):
-            return self.name
+        return self.name
 
 
 class Project(models.Model):
