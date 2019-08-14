@@ -18,6 +18,9 @@ export default class CommentList extends Component {
 		return (
 			<div>
 				<h4>Comments: </h4>
+				<Link to={`/projects/${this.props.projectId}/comments/new`}>
+					Add New Comment
+				</Link>
 				{commentList}
 			</div>
 		);

@@ -34,7 +34,11 @@ export default class NewProjectForm extends Component {
 	};
 
 	handleSelect = selectedOption => {
-		if (this.state.selectedOptions.includes(selectedOption)) {
+		if (
+			this.state.selectedOptions.find(
+				option => option.id === selectedOption.id
+			)
+		) {
 			this.setState(state => {
 				return {
 					selectedOptions: state.selectedOptions.filter(option => {
