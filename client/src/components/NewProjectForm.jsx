@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Redirect, Link } from "react-router-dom";
 import Select from "react-select";
+import { Flex } from "rebass";
 
 export default class NewProjectForm extends Component {
 	state = {
@@ -83,10 +84,46 @@ export default class NewProjectForm extends Component {
 		});
 	};
 
+	handleRemoveComponent = event => {
+		const target = event.target.name;
+		this.setState(state => {
+			return {
+				selectedOptions: state.selectedOptions.filter(component => {
+					return component.label !== target;
+				})
+			};
+		});
+		this.setState(state => {
+			return {
+				newProject: {
+					name: state.newProject.name,
+					schematic_url: state.newProject.schematic_url,
+					directions: state.newProject.directions,
+					comments: [],
+					components: state.selectedOptions.map(component => {
+						return component.id;
+					})
+				}
+			};
+		});
+	};
+
 	render() {
 		if (this.state.redirectToHome) {
 			return <Redirect to='/' />;
 		}
+		const selectedComponents = this.state.selectedOptions.map(component => {
+			return (
+				<Flex justifyContent='center' m={2} border='1px solid black'>
+					<p>{component.label}</p>
+					<button
+						name={component.label}
+						onClick={this.handleRemoveComponent}>
+						X
+					</button>
+				</Flex>
+			);
+		});
 		return (
 			<div>
 				<h2>Create a New Project</h2>
@@ -125,10 +162,20 @@ export default class NewProjectForm extends Component {
 						/>
 					</div>
 					<div>
+						<label htmlFor='project-components'>
+							Components Needed:{" "}
+						</label>
+						<Flex
+							className='selected-components'
+							width='50vw;'
+							justifyContent='center'>
+							{selectedComponents}
+						</Flex>
 						<Select
 							value={this.state.selectedOptions}
 							onChange={this.handleSelect}
 							options={this.state.components}
+							id='project-components'
 							name='components'
 						/>
 						<Link to='/components/new'>
