@@ -4,6 +4,7 @@ import { Redirect, Link } from "react-router-dom";
 import Select from "react-select";
 import ComponentList from "./ComponentList";
 import CommentList from "./CommentList";
+import { Flex } from "rebass";
 
 export default class SingleProject extends Component {
 	state = {
@@ -161,10 +162,47 @@ export default class SingleProject extends Component {
 			});
 	};
 
+	handleRemoveComponent = event => {
+		event.preventDefault();
+		const target = event.target;
+		this.setState(state => {
+			return {
+				selectedOptions: state.selectedOptions.filter(component => {
+					return component.label !== target.name;
+				})
+			};
+		});
+		this.setState(state => {
+			return {
+				project: {
+					name: state.project.name,
+					schematic_url: state.project.schematic_url,
+					directions: state.project.directions,
+					comments: state.project.comments,
+					components: state.selectedOptions.map(component => {
+						return component.id;
+					})
+				}
+			};
+		});
+	};
+
 	render() {
 		if (this.state.redirectToHome) {
 			return <Redirect to='/' />;
 		}
+		const selectedComponents = this.state.selectedOptions.map(component => {
+			return (
+				<Flex justifyContent='center' m={2} border='1px solid black'>
+					<p>{component.label}</p>
+					<button
+						name={component.label}
+						onClick={this.handleRemoveComponent}>
+						X
+					</button>
+				</Flex>
+			);
+		});
 		return (
 			<div>
 				{this.state.isEditFormDisplayed ? (
@@ -205,6 +243,12 @@ export default class SingleProject extends Component {
 							/>
 						</div>
 						<div>
+							<label htmlFor='project-components'>
+								Components Needed:{" "}
+							</label>
+							<Flex justifyContent='center' m={2}>
+								{selectedComponents}
+							</Flex>
 							<Select
 								value={this.state.selectedOptions}
 								onChange={this.handleSelect}

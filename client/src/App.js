@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import NewProjectForm from "./components/NewProjectForm";
 import NewComponentForm from "./components/NewComponentForm";
 import NewCommentForm from "./components/NewCommentForm";
+import Footer from "./components/Footer";
 
 export default class App extends Component {
 	render() {
@@ -17,34 +18,40 @@ export default class App extends Component {
 			<div className='App'>
 				<Router>
 					<Route path='/' component={Header} />
-					<Switch>
-						<Route exact path='/' component={ProjectList} />
-						<Route
-							path='/components/new'
-							component={NewComponentForm}
-						/>
-						<Route
-							path='/components/:componentId'
-							component={SingleComponent}
-						/>
-						<Route path='/components' component={ComponentList} />
-						<Route
-							path='/projects/:projectId/comments/new'
-							component={NewCommentForm}
-						/>
-						<Route
-							path='/comments/:commentId'
-							component={SingleComment}
-						/>
-						<Route
-							path='/projects/new'
-							component={NewProjectForm}
-						/>
-						<Route
-							path='/projects/:projectId'
-							component={SingleProject}
-						/>
-					</Switch>
+					<div className='body-content'>
+						<Switch>
+							<Route exact path='/' component={ProjectList} />
+							<Route
+								path='/components/new'
+								component={NewComponentForm}
+							/>
+							<Route
+								path='/components/:componentId'
+								component={SingleComponent}
+							/>
+							<Route
+								path='/components'
+								component={ComponentList}
+							/>
+							<Route
+								path='/projects/:projectId/comments/new'
+								component={NewCommentForm}
+							/>
+							<Route
+								path='/comments/:commentId'
+								component={SingleComment}
+							/>
+							<Route
+								path='/projects/new'
+								component={NewProjectForm}
+							/>
+							<Route
+								path='/projects/:projectId'
+								component={SingleProject}
+							/>
+						</Switch>
+					</div>
+					<Route path='/' component={Footer} />
 				</Router>
 			</div>
 		);
