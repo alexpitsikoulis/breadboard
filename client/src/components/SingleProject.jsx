@@ -5,6 +5,8 @@ import Select from "react-select";
 import ComponentList from "./ComponentList";
 import CommentList from "./CommentList";
 import { Flex } from "rebass";
+import NewProjectForm from "./NewProjectForm";
+import { thisTypeAnnotation } from "@babel/types";
 
 export default class SingleProject extends Component {
 	state = {
@@ -119,9 +121,9 @@ export default class SingleProject extends Component {
 	};
 
 	handleChange = event => {
-		const copiedNewProject = { ...this.state.newProject };
-		copiedNewProject[event.target.name] = event.target.value;
-		this.setState({ newProject: copiedNewProject });
+		const copiedProject = { ...this.state.project };
+		copiedProject[event.target.name] = event.target.value;
+		this.setState({ project: copiedProject });
 	};
 
 	handleSubmit = event => {
@@ -138,19 +140,19 @@ export default class SingleProject extends Component {
 
 	handleSubmit = event => {
 		event.preventDefault();
-		this.setState(state => {
-			return {
-				project: {
-					name: state.project.name,
-					schematic_url: state.project.schematic_url,
-					directions: state.project.directions,
-					comments: state.project.comments,
-					components: state.selectedOptions.map(component => {
-						return component.id;
-					})
-				}
-			};
-		});
+		// this.setState(state => {
+		// 	return {
+		// 		project: {
+		// 			name: state.project.name,
+		// 			schematic_url: state.project.schematic_url,
+		// 			directions: state.project.directions,
+		// 			comments: state.project.comments,
+		// 			components: state.selectedOptions.map(component => {
+		// 				return component.id;
+		// 			})
+		// 		}
+		// 	};
+		// });
 		axios
 			.put(
 				`/api/v1/projects/${this.props.match.params.projectId}/`,
@@ -206,63 +208,13 @@ export default class SingleProject extends Component {
 		return (
 			<div>
 				{this.state.isEditFormDisplayed ? (
-					<form onSubmit={this.handleSubmit}>
-						<div>
-							<label htmlFor='project-name'>Name: </label>
-							<input
-								type='text'
-								id='project-name'
-								name='name'
-								value={this.state.project.name}
-								onChange={this.handleChange}
-							/>
-						</div>
-						<div>
-							<label htmlFor='project-schematic-url'>
-								Schematic URL:
-							</label>
-							<input
-								type='text'
-								id='project-schematic-url'
-								name='schematic_url'
-								value={this.state.project.schematic_url}
-								onChange={this.handleChange}
-							/>
-						</div>
-						<div>
-							<label htmlFor='project-directions'>
-								Directions:{" "}
-							</label>
-							<textarea
-								name='directions'
-								id='project-directions'
-								cols='30'
-								rows='10'
-								value={this.state.project.directions}
-								onChange={this.handleChange}
-							/>
-						</div>
-						<div>
-							<label htmlFor='project-components'>
-								Components Needed:{" "}
-							</label>
-							<Flex justifyContent='center' m={2}>
-								{selectedComponents}
-							</Flex>
-							<Select
-								value={this.state.selectedOptions}
-								onChange={this.handleSelect}
-								options={this.state.components}
-								name='components'
-							/>
-							<Link to='/components/new'>
-								Don't see the component listed? Add it here.
-							</Link>
-						</div>
-						<div>
-							<input type='submit' value='Submit' />
-						</div>
-					</form>
+					<NewProjectForm
+						project={this.state.project}
+						selectedOptions={this.state.selectedOptions}
+						handleChange={this.handleChange}
+						handleSubmit={this.handleSubmit}
+						handleSelect={this.handleSelect}
+					/>
 				) : (
 					<div>
 						<h2>{this.state.project.name}</h2>

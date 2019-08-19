@@ -126,16 +126,33 @@ export default class NewProjectForm extends Component {
 		});
 		return (
 			<div>
-				<h2>Create a New Project</h2>
-				<form onSubmit={this.handleSubmit}>
+				<h2>
+					{this.props.project
+						? "Edit Project"
+						: "Create a New Project"}
+				</h2>
+				<form
+					onSubmit={
+						this.props.handleSubmit
+							? this.props.handleSubmit
+							: this.handleSubmit
+					}>
 					<div>
 						<label htmlFor='project-name'>Name: </label>
 						<input
 							type='text'
 							id='project-name'
 							name='name'
-							value={this.state.newProject.name}
-							onChange={this.handleChange}
+							value={
+								this.props.project
+									? this.props.project.name
+									: this.state.newProject.name
+							}
+							onChange={
+								this.props.handleChange
+									? this.props.handleChange
+									: this.handleChange
+							}
 						/>
 					</div>
 					<div>
@@ -146,8 +163,16 @@ export default class NewProjectForm extends Component {
 							type='text'
 							id='project-schematic-url'
 							name='schematic_url'
-							value={this.state.newProject.schematic_url}
-							onChange={this.handleChange}
+							value={
+								this.props.project
+									? this.props.project.schematic_url
+									: this.state.newProject.schematic_url
+							}
+							onChange={
+								this.props.handleChange
+									? this.props.handleChange
+									: this.handleChange
+							}
 						/>
 					</div>
 					<div>
@@ -157,8 +182,16 @@ export default class NewProjectForm extends Component {
 							id='project-directions'
 							cols='30'
 							rows='10'
-							value={this.state.newProject.directions}
-							onChange={this.handleChange}
+							value={
+								this.props.project
+									? this.props.project.directions
+									: this.state.newProject.directions
+							}
+							onChange={
+								this.props.handleChange
+									? this.props.handleChange
+									: this.handleChange
+							}
 						/>
 					</div>
 					<div>
@@ -172,8 +205,16 @@ export default class NewProjectForm extends Component {
 							{selectedComponents}
 						</Flex>
 						<Select
-							value={this.state.selectedOptions}
-							onChange={this.handleSelect}
+							value={
+								this.props.selectedOptions
+									? this.props.selectedOptions
+									: this.state.selectedOptions
+							}
+							onChange={
+								this.props.handleSelect
+									? this.props.handleSelect
+									: this.handleSelect
+							}
 							options={this.state.components}
 							id='project-components'
 							name='components'
