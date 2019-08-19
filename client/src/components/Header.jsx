@@ -10,7 +10,7 @@ export default class Header extends Component {
 					<Link to='/'>Breadboard</Link>
 				</h1>
 				<nav>
-					<Flex justifyContent='space-around'>
+					<Flex justifyContent='space-around' alignItems='center'>
 						<Link to='/'>Projects</Link>
 						<Link to='/components'>Components</Link>
 					</Flex>
