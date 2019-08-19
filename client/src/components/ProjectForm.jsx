@@ -125,7 +125,11 @@ export default class NewProjectForm extends Component {
 					<p>{component.label}</p>
 					<button
 						name={component.label}
-						onClick={this.props.handleRemoveComponent}>
+						onClick={
+							this.props.handleRemoveComponent
+								? this.props.handleRemoveComponent
+								: this.handleRemoveComponent
+						}>
 						X
 					</button>
 				</Flex>
