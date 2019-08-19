@@ -205,13 +205,16 @@ export default class NewProjectForm extends Component {
 							}
 						/>
 					</div>
-					<div>
+					<Flex flexDirection='column'>
 						<label htmlFor='project-components'>
 							Components Needed:{" "}
 						</label>
 						<Flex
 							className='selected-components'
-							justifyContent='center'>
+							justifyContent='center'
+							flexWrap='wrap'
+							width='50vw'
+							alignSelf='center'>
 							{selectedComponents}
 						</Flex>
 						<Select
@@ -233,7 +236,7 @@ export default class NewProjectForm extends Component {
 						<Link to='/components/new'>
 							Don't see the component listed? Add it here.
 						</Link>
-					</div>
+					</Flex>
 					<div>
 						<input type='submit' value='Submit' />
 					</div>

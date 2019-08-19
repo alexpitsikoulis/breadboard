@@ -79,7 +79,7 @@ a {
 }
 
 .selected-components {
-	margin: 0 auto;
+	justify-self: center;
 }
 
 .comment {
