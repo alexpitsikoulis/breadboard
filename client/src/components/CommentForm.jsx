@@ -35,15 +35,28 @@ export default class NewCommentForm extends Component {
 		}
 		return (
 			<div>
-				<form onSubmit={this.handleSubmit}>
+				<form
+					onSubmit={
+						this.props.handleSubmit
+							? this.props.handleSubmit
+							: this.handleSubmit
+					}>
 					<div>
 						<label htmlFor='comment-author'>Display Name: </label>
 						<input
 							type='text'
 							id='comment-author'
 							name='author'
-							value={this.state.newComment.name}
-							onChange={this.handleChange}
+							value={
+								this.props.comment
+									? this.props.comment.author
+									: this.state.newComment.name
+							}
+							onChange={
+								this.props.handleChange
+									? this.props.handleChange
+									: this.handleChange
+							}
 						/>
 					</div>
 					<div>
@@ -53,8 +66,16 @@ export default class NewCommentForm extends Component {
 							id='comment'
 							cols='30'
 							rows='10'
-							value={this.state.newComment.comment}
-							onChange={this.handleChange}
+							value={
+								this.props.comment
+									? this.props.comment.comment
+									: this.state.newComment.comment
+							}
+							onChange={
+								this.props.handleChange
+									? this.props.handleChange
+									: this.handleChange
+							}
 						/>
 					</div>
 					<div>

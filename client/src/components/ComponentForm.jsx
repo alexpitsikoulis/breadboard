@@ -32,16 +32,33 @@ export default class NewComponentForm extends Component {
 		}
 		return (
 			<div>
-				<h2>Create New Component</h2>
-				<form onSubmit={this.handleSubmit}>
+				<h2>
+					{this.props.component
+						? "Edit Component"
+						: "Create New Component"}
+				</h2>
+				<form
+					onSubmit={
+						this.props.handleSubmit
+							? this.props.handleSubmit
+							: this.handleSubmit
+					}>
 					<div>
 						<label htmlFor='component-name'>Name: </label>
 						<input
 							type='text'
 							id='component-name'
 							name='name'
-							value={this.state.newComponent.name}
-							onChange={this.handleChange}
+							value={
+								this.props.component
+									? this.props.component.name
+									: this.state.newComponent.name
+							}
+							onChange={
+								this.props.handleChange
+									? this.props.handleChange
+									: this.handleChange
+							}
 						/>
 					</div>
 					<div>
@@ -50,8 +67,16 @@ export default class NewComponentForm extends Component {
 							type='text'
 							id='component-img-url'
 							name='img_url'
-							value={this.state.newComponent.img_url}
-							onChange={this.handleChange}
+							value={
+								this.props.component
+									? this.props.component.img_url
+									: this.state.newComponent.img_url
+							}
+							onChange={
+								this.props.handleChange
+									? this.props.handleChange
+									: this.handleChange
+							}
 						/>
 					</div>
 					<div>
@@ -62,8 +87,16 @@ export default class NewComponentForm extends Component {
 							type='text'
 							id='component-retailer'
 							name='retailer'
-							value={this.state.newComponent.retailer}
-							onChange={this.handleChange}
+							value={
+								this.props.component
+									? this.props.component.retailer
+									: this.state.newComponent.retailer
+							}
+							onChange={
+								this.props.handleChange
+									? this.props.handleChange
+									: this.handleChange
+							}
 						/>
 					</div>
 					<div>
@@ -75,8 +108,16 @@ export default class NewComponentForm extends Component {
 							id='component-description'
 							cols='30'
 							rows='10'
-							value={this.state.newComponent.description}
-							onChange={this.handleChange}
+							value={
+								this.props.component
+									? this.props.component.description
+									: this.state.newComponent.description
+							}
+							onChange={
+								this.props.handleChange
+									? this.props.handleChange
+									: this.handleChange
+							}
 						/>
 					</div>
 					<div>

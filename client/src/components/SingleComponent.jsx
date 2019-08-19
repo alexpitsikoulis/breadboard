@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
+import ComponentForm from "./ComponentForm";
 
 export default class SingleComponent extends Component {
 	state = {
@@ -62,60 +63,11 @@ export default class SingleComponent extends Component {
 		return (
 			<div>
 				{this.state.isEditFormDisplayed ? (
-					<div>
-						<form onSubmit={this.handleSubmit}>
-							<div>
-								<label htmlFor='component-name'>Name: </label>
-								<input
-									type='text'
-									id='component-name'
-									name='name'
-									value={this.state.component.name}
-									onChange={this.handleChange}
-								/>
-							</div>
-							<div>
-								<label htmlFor='component-img-url'>
-									Image URL:{" "}
-								</label>
-								<input
-									type='text'
-									id='component-img-url'
-									name='img_url'
-									value={this.state.component.img_url}
-									onChange={this.handleChange}
-								/>
-							</div>
-							<div>
-								<label htmlFor='component-retailer'>
-									Where to buy:
-								</label>
-								<input
-									type='text'
-									id='component-retailer'
-									name='retailer'
-									value={this.state.component.retailer}
-									onChange={this.handleChange}
-								/>
-							</div>
-							<div>
-								<label htmlFor='component-description'>
-									Description:{" "}
-								</label>
-								<textarea
-									name='description'
-									id='component-description'
-									cols='30'
-									rows='10'
-									value={this.state.component.description}
-									onChange={this.handleChange}
-								/>
-							</div>
-							<div>
-								<input type='submit' value='Submit' />
-							</div>
-						</form>
-					</div>
+					<ComponentForm
+						component={this.state.component}
+						handleChange={this.handleChange}
+						handleSubmit={this.handleSubmit}
+					/>
 				) : (
 					<div>
 						<h2>{this.state.component.name}</h2>

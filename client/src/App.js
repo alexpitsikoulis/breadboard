@@ -8,8 +8,8 @@ import SingleComment from "./components/SingleComment";
 import ComponentList from "./components/ComponentList";
 import Header from "./components/Header";
 import ProjectForm from "./components/ProjectForm";
-import NewComponentForm from "./components/NewComponentForm";
-import NewCommentForm from "./components/NewCommentForm";
+import ComponentForm from "./components/ComponentForm";
+import CommentForm from "./components/CommentForm";
 import Footer from "./components/Footer";
 
 export default class App extends Component {
@@ -23,7 +23,7 @@ export default class App extends Component {
 							<Route exact path='/' component={ProjectList} />
 							<Route
 								path='/components/new'
-								component={NewComponentForm}
+								component={ComponentForm}
 							/>
 							<Route
 								path='/components/:componentId'
@@ -35,10 +35,10 @@ export default class App extends Component {
 							/>
 							<Route
 								path='/projects/:projectId/comments/new'
-								component={NewCommentForm}
+								component={CommentForm}
 							/>
 							<Route
-								path='/comments/:commentId'
+								path='/projects/:projectId/comments/:commentId'
 								component={SingleComment}
 							/>
 							<Route

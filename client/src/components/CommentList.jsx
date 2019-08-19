@@ -7,7 +7,10 @@ export default class CommentList extends Component {
 		let commentList = this.props.comments.map(comment => {
 			return (
 				<div>
-					<Link to={`/comments/${comment.id}`}>
+					<Link
+						to={`/projects/${comment.project}/comments/${
+							comment.id
+						}`}>
 						<strong>
 							<p>{comment.author}</p>
 						</strong>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
+import CommentForm from "./CommentForm";
 
 export default class SingleComment extends Component {
 	state = {
@@ -61,35 +62,12 @@ export default class SingleComment extends Component {
 		return (
 			<div>
 				{this.state.isEditFormDisplayed ? (
-					<div>
-						<form onSubmit={this.handleSubmit}>
-							<div>
-								<label htmlFor='comment-author'>
-									Display Name:{" "}
-								</label>
-								<input
-									type='text'
-									id='comment-author'
-									name='author'
-									value={this.state.comment.author}
-									onChange={this.handleChange}
-								/>
-							</div>
-							<div>
-								<label htmlFor='comment'>Comment: </label>
-								<input
-									type='text'
-									id='commment'
-									name='comment'
-									value={this.state.comment.comment}
-									onChange={this.handleChange}
-								/>
-							</div>
-							<div>
-								<input type='submit' value='Edit' />
-							</div>
-						</form>
-					</div>
+					<CommentForm
+						comment={this.state.comment}
+						handleChange={this.handleChange}
+						handleSubmit={this.handleSubmit}
+						match={this.props.match}
+					/>
 				) : (
 					<div>
 						<h2>Comment by: {this.state.comment.author}</h2>
