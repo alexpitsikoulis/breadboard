@@ -6,7 +6,7 @@ export default class CommentList extends Component {
 	render() {
 		let commentList = this.props.comments.map(comment => {
 			return (
-				<div>
+				<div key={comment.id}>
 					<Link
 						to={`/projects/${comment.project}/comments/${
 							comment.id

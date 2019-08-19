@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Flex, Box } from "rebass";
+import { Flex } from "rebass";
 
 export default class Header extends Component {
 	render() {

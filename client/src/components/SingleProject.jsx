@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Redirect, Link } from "react-router-dom";
-import Select from "react-select";
+import { Redirect } from "react-router-dom";
 import ComponentList from "./ComponentList";
 import CommentList from "./CommentList";
-import { Flex } from "rebass";
 import ProjectForm from "./ProjectForm";
-import { thisTypeAnnotation } from "@babel/types";
 
 export default class SingleProject extends Component {
 	state = {
@@ -140,19 +137,6 @@ export default class SingleProject extends Component {
 
 	handleSubmit = event => {
 		event.preventDefault();
-		// this.setState(state => {
-		// 	return {
-		// 		project: {
-		// 			name: state.project.name,
-		// 			schematic_url: state.project.schematic_url,
-		// 			directions: state.project.directions,
-		// 			comments: state.project.comments,
-		// 			components: state.selectedOptions.map(component => {
-		// 				return component.id;
-		// 			})
-		// 		}
-		// 	};
-		// });
 		axios
 			.put(
 				`/api/v1/projects/${this.props.match.params.projectId}/`,
@@ -193,18 +177,7 @@ export default class SingleProject extends Component {
 		if (this.state.redirectToHome) {
 			return <Redirect to='/' />;
 		}
-		const selectedComponents = this.state.selectedOptions.map(component => {
-			return (
-				<Flex justifyContent='center' m={2} border='1px solid black'>
-					<p>{component.label}</p>
-					<button
-						name={component.label}
-						onClick={this.handleRemoveComponent}>
-						X
-					</button>
-				</Flex>
-			);
-		});
+
 		return (
 			<div>
 				{this.state.isEditFormDisplayed ? (

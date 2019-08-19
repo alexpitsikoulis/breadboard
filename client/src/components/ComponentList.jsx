@@ -31,6 +31,7 @@ export default class ComponentList extends Component {
 				</div>
 			);
 		});
+
 		return (
 			<div>
 				{this.props.components ? null : <h2>All Components</h2>}

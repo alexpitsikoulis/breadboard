@@ -116,6 +116,7 @@ export default class NewProjectForm extends Component {
 			? this.props.selectedOptions.map(component => {
 					return (
 						<Flex
+							key={component.id}
 							justifyContent='center'
 							m={2}
 							border='1px solid black'>
@@ -131,6 +132,7 @@ export default class NewProjectForm extends Component {
 			: this.state.selectedOptions.map(component => {
 					return (
 						<Flex
+							key={component.id}
 							justifyContent='center'
 							m={2}
 							border='1px solid black'>
