@@ -112,39 +112,25 @@ export default class NewProjectForm extends Component {
 		if (this.state.redirectToHome) {
 			return <Redirect to='/' />;
 		}
-		const selectedComponents = this.props.selectedOptions
-			? this.props.selectedOptions.map(component => {
-					return (
-						<Flex
-							key={component.id}
-							justifyContent='center'
-							m={2}
-							border='1px solid black'>
-							<p>{component.label}</p>
-							<button
-								name={component.label}
-								onClick={this.props.handleRemoveComponent}>
-								X
-							</button>
-						</Flex>
-					);
-			  })
-			: this.state.selectedOptions.map(component => {
-					return (
-						<Flex
-							key={component.id}
-							justifyContent='center'
-							m={2}
-							border='1px solid black'>
-							<p>{component.label}</p>
-							<button
-								name={component.label}
-								onClick={this.handleRemoveComponent}>
-								X
-							</button>
-						</Flex>
-					);
-			  });
+		const selectedComponents = (this.props.selectedOptions
+			? this.props.selectedOptions
+			: this.state.selectedOptions
+		).map(component => {
+			return (
+				<Flex
+					key={component.id}
+					justifyContent='center'
+					m={2}
+					className='selected-component'>
+					<p>{component.label}</p>
+					<button
+						name={component.label}
+						onClick={this.props.handleRemoveComponent}>
+						X
+					</button>
+				</Flex>
+			);
+		});
 		return (
 			<div>
 				<h2>
@@ -221,7 +207,6 @@ export default class NewProjectForm extends Component {
 						</label>
 						<Flex
 							className='selected-components'
-							width='50vw;'
 							justifyContent='center'>
 							{selectedComponents}
 						</Flex>
@@ -239,6 +224,7 @@ export default class NewProjectForm extends Component {
 							options={this.state.components}
 							id='project-components'
 							name='components'
+							id='component-select'
 						/>
 						<Link to='/components/new'>
 							Don't see the component listed? Add it here.

@@ -26,7 +26,7 @@ export default class ComponentList extends Component {
 			return (
 				<div key={component.id}>
 					<Link to={`/components/${component.id}`}>
-						<h6>{component.name}</h6>
+						<h4>{component.name}</h4>
 					</Link>
 				</div>
 			);
