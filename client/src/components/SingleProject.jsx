@@ -5,7 +5,7 @@ import Select from "react-select";
 import ComponentList from "./ComponentList";
 import CommentList from "./CommentList";
 import { Flex } from "rebass";
-import NewProjectForm from "./NewProjectForm";
+import ProjectForm from "./ProjectForm";
 import { thisTypeAnnotation } from "@babel/types";
 
 export default class SingleProject extends Component {
@@ -208,12 +208,13 @@ export default class SingleProject extends Component {
 		return (
 			<div>
 				{this.state.isEditFormDisplayed ? (
-					<NewProjectForm
+					<ProjectForm
 						project={this.state.project}
 						selectedOptions={this.state.selectedOptions}
 						handleChange={this.handleChange}
 						handleSubmit={this.handleSubmit}
 						handleSelect={this.handleSelect}
+						handleRemoveComponent={this.handleRemoveComponent}
 					/>
 				) : (
 					<div>

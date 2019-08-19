@@ -7,7 +7,7 @@ import SingleComponent from "./components/SingleComponent";
 import SingleComment from "./components/SingleComment";
 import ComponentList from "./components/ComponentList";
 import Header from "./components/Header";
-import NewProjectForm from "./components/NewProjectForm";
+import ProjectForm from "./components/ProjectForm";
 import NewComponentForm from "./components/NewComponentForm";
 import NewCommentForm from "./components/NewCommentForm";
 import Footer from "./components/Footer";
@@ -43,7 +43,7 @@ export default class App extends Component {
 							/>
 							<Route
 								path='/projects/new'
-								component={NewProjectForm}
+								component={ProjectForm}
 							/>
 							<Route
 								path='/projects/:projectId'
