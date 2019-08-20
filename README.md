@@ -22,7 +22,7 @@ In future versions I plan to implement authentication to restrict edit and delet
 
 ## Wireframe and ERD Images
 
-![ERD Image](client/public/images/ERD-image.png)
+![ERD Image](client/public/images/erd-image.png)
 ![Wireframe Image 1](client/public/images/wireframe-image-1.png)
 ![Wireframe Image 2](client/public/images/wireframe-image-2.png)
 ![Wireframe Image 3](client/public/images/wireframe-image-3.png)
