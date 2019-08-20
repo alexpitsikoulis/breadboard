@@ -148,64 +148,74 @@ export default class NewProjectForm extends Component {
 							? this.props.handleSubmit
 							: this.handleSubmit
 					}>
-					<div>
-						<label htmlFor='project-name'>Name: </label>
-						<input
-							type='text'
-							id='project-name'
-							name='name'
-							value={
-								this.props.project
-									? this.props.project.name
-									: this.state.newProject.name
-							}
-							onChange={
-								this.props.handleChange
-									? this.props.handleChange
-									: this.handleChange
-							}
-						/>
+					<div className='form-fields'>
+						<div>
+							<label htmlFor='project-name'>Name: </label>
+						</div>
+						<div>
+							<input
+								type='text'
+								id='project-name'
+								name='name'
+								value={
+									this.props.project
+										? this.props.project.name
+										: this.state.newProject.name
+								}
+								onChange={
+									this.props.handleChange
+										? this.props.handleChange
+										: this.handleChange
+								}
+							/>
+						</div>
+						<div>
+							<label htmlFor='project-schematic-url'>
+								Schematic URL:
+							</label>
+						</div>
+						<div>
+							<input
+								type='text'
+								id='project-schematic-url'
+								name='schematic_url'
+								value={
+									this.props.project
+										? this.props.project.schematic_url
+										: this.state.newProject.schematic_url
+								}
+								onChange={
+									this.props.handleChange
+										? this.props.handleChange
+										: this.handleChange
+								}
+							/>
+						</div>
+						<div>
+							<label htmlFor='project-directions'>
+								Directions:{" "}
+							</label>
+						</div>
+						<div>
+							<textarea
+								name='directions'
+								id='project-directions'
+								cols='30'
+								rows='10'
+								value={
+									this.props.project
+										? this.props.project.directions
+										: this.state.newProject.directions
+								}
+								onChange={
+									this.props.handleChange
+										? this.props.handleChange
+										: this.handleChange
+								}
+							/>
+						</div>
 					</div>
-					<div>
-						<label htmlFor='project-schematic-url'>
-							Schematic URL:
-						</label>
-						<input
-							type='text'
-							id='project-schematic-url'
-							name='schematic_url'
-							value={
-								this.props.project
-									? this.props.project.schematic_url
-									: this.state.newProject.schematic_url
-							}
-							onChange={
-								this.props.handleChange
-									? this.props.handleChange
-									: this.handleChange
-							}
-						/>
-					</div>
-					<div>
-						<label htmlFor='project-directions'>Directions: </label>
-						<textarea
-							name='directions'
-							id='project-directions'
-							cols='30'
-							rows='10'
-							value={
-								this.props.project
-									? this.props.project.directions
-									: this.state.newProject.directions
-							}
-							onChange={
-								this.props.handleChange
-									? this.props.handleChange
-									: this.handleChange
-							}
-						/>
-					</div>
-					<Flex flexDirection='column'>
+					<Flex flexDirection='column' className='multi-select'>
 						<label htmlFor='project-components'>
 							Components Needed:{" "}
 						</label>

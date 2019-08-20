@@ -41,42 +41,50 @@ export default class NewCommentForm extends Component {
 							? this.props.handleSubmit
 							: this.handleSubmit
 					}>
-					<div>
-						<label htmlFor='comment-author'>Display Name: </label>
-						<input
-							type='text'
-							id='comment-author'
-							name='author'
-							value={
-								this.props.comment
-									? this.props.comment.author
-									: this.state.newComment.name
-							}
-							onChange={
-								this.props.handleChange
-									? this.props.handleChange
-									: this.handleChange
-							}
-						/>
-					</div>
-					<div>
-						<label htmlFor='comment'>Comment: </label>
-						<textarea
-							name='comment'
-							id='comment'
-							cols='30'
-							rows='10'
-							value={
-								this.props.comment
-									? this.props.comment.comment
-									: this.state.newComment.comment
-							}
-							onChange={
-								this.props.handleChange
-									? this.props.handleChange
-									: this.handleChange
-							}
-						/>
+					<div className='form-fields'>
+						<div>
+							<label htmlFor='comment-author'>
+								Display Name:{" "}
+							</label>
+						</div>
+						<div>
+							<input
+								type='text'
+								id='comment-author'
+								name='author'
+								value={
+									this.props.comment
+										? this.props.comment.author
+										: this.state.newComment.name
+								}
+								onChange={
+									this.props.handleChange
+										? this.props.handleChange
+										: this.handleChange
+								}
+							/>
+						</div>
+						<div>
+							<label htmlFor='comment'>Comment: </label>
+						</div>
+						<div>
+							<textarea
+								name='comment'
+								id='comment'
+								cols='30'
+								rows='10'
+								value={
+									this.props.comment
+										? this.props.comment.comment
+										: this.state.newComment.comment
+								}
+								onChange={
+									this.props.handleChange
+										? this.props.handleChange
+										: this.handleChange
+								}
+							/>
+						</div>
 					</div>
 					<div>
 						<input type='submit' value='Submit' />
