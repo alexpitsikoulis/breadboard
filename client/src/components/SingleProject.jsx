@@ -31,7 +31,7 @@ export default class SingleProject extends Component {
 			.then(() => {
 				const youtubeQuery = (this.state.project.name + " make")
 					.split(" ")
-					.join("%2C");
+					.join(",");
 				const youtubeApi = axios.create({
 					baseURL: `https://www.googleapis.com/youtube/v3`,
 					params: {
