@@ -5,8 +5,6 @@ import ComponentList from "./ComponentList";
 import CommentList from "./CommentList";
 import ProjectForm from "./ProjectForm";
 
-console.log(process.env.REACT_APP_API_KEY);
-
 export default class SingleProject extends Component {
 	state = {
 		project: {
@@ -33,7 +31,7 @@ export default class SingleProject extends Component {
 			.then(() => {
 				const youtubeQuery = (this.state.project.name + " make")
 					.split(" ")
-					.join(",");
+					.join("%2C");
 				const youtubeApi = axios.create({
 					baseURL: `https://www.googleapis.com/youtube/v3`,
 					params: {
