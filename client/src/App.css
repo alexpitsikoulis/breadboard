@@ -67,6 +67,10 @@ a {
 	font-weight: 900;
 }
 
+iframe {
+	margin: 5px;
+}
+
 .body-content {
 	min-height: 65vh;
 }

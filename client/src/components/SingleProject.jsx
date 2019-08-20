@@ -5,6 +5,8 @@ import ComponentList from "./ComponentList";
 import CommentList from "./CommentList";
 import ProjectForm from "./ProjectForm";
 
+console.log(process.env.REACT_APP_API_KEY);
+
 export default class SingleProject extends Component {
 	state = {
 		project: {
@@ -13,6 +15,7 @@ export default class SingleProject extends Component {
 		},
 		components: [],
 		selectedOptions: [],
+		relatedVideos: [],
 		isEditFormDisplayed: false,
 		redirectToHome: false
 	};
@@ -26,6 +29,31 @@ export default class SingleProject extends Component {
 			.get(`/api/v1/projects/${this.props.match.params.projectId}/`)
 			.then(res => {
 				this.setState({ project: res.data });
+			})
+			.then(() => {
+				const youtubeQuery = (this.state.project.name + " make")
+					.split(" ")
+					.join(",");
+				const youtubeApi = axios.create({
+					baseURL: `https://www.googleapis.com/youtube/v3`,
+					params: {
+						Authorization: process.env.REACT_APP_API_KEY,
+						part: "snippet.title",
+						maxResults: 5
+					}
+				});
+
+				youtubeApi
+					.get(`/search`, {
+						params: {
+							part: "snippet",
+							q: youtubeQuery,
+							key: process.env.REACT_APP_API_KEY
+						}
+					})
+					.then(res => {
+						this.setState({ relatedVideos: res.data.items });
+					});
 			})
 			.then(() => {
 				axios.get(`/api/v1/components/`).then(res => {
@@ -178,6 +206,19 @@ export default class SingleProject extends Component {
 			return <Redirect to='/' />;
 		}
 
+		const videoPlayers = this.state.relatedVideos.map(video => {
+			return (
+				<iframe
+					width='560'
+					height='315'
+					src={`https://www.youtube.com/embed/${video.id.videoId}`}
+					frameborder='0'
+					allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+					allowfullscreen
+				/>
+			);
+		});
+
 		return (
 			<div>
 				{this.state.isEditFormDisplayed ? (
@@ -218,6 +259,10 @@ export default class SingleProject extends Component {
 						? "Back to Project"
 						: "Edit Project"}
 				</button>
+				<h3>
+					If you like this project check out these related videos!
+				</h3>
+				<div>{videoPlayers}</div>
 			</div>
 		);
 	}

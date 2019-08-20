@@ -229,7 +229,6 @@ export default class NewProjectForm extends Component {
 									: this.handleSelect
 							}
 							options={this.state.components}
-							id='project-components'
 							name='components'
 							id='component-select'
 						/>
